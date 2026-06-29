@@ -1,37 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CommentoController;
-use App\Http\Controllers\LikeController;
 
 
 
+// Il controller gestisce una collezione di risorse
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\TagController;
 
-Route::middleware('auth')->group(function () {
-
-    Route::get('/posts', [PostController::class, 'index'])
-        ->name('posts.index');
-
-    Route::get('/posts/create', [PostController::class, 'create'])
-        ->name('posts.create');
-
-    Route::post('/posts', [PostController::class, 'store'])
-        ->name('posts.store');
-
-    Route::post('/commenti', [CommentoController::class, 'store'])
-        ->name('commenti.store');
-});
-
+// Homepage
 Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route('posts.index');
-    }
-    return redirect()->route('login');
-});
+    return view('welcome');
+})->name('welcome');
+
+// Articles CRUD
+// Rotta specifica per cui articoli devon rimanere collegati con il proprio controller; (metodo + pratico rapido e codice pulito)
+Route::resource('articles', ArticleController::class);
+
+// Tags CRUD
+// Rotta index per vedere a lista
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+// Rotta per creare dei tag con il controller apposito
+Route::get('/tags/create', [TagController::class, 'create'])->name('tags.create');
 
 
+// Rotta delle memorizzazioni dopo aggiornamento al metodo store verran salvari ed immagazzinati in db
+Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
 
-Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
+
+// Rotta specifica per cui puoi eliminare dei tag che crei
+Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');

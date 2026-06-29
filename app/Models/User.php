@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Post;
+use App\Models\Comment;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 // use Database\Factories\UserFactory;
 // use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -38,9 +40,9 @@ class User extends Authenticatable
 
 
     // relazione ono ha molti poichè un user ha molti commenti
-    public function commenti()
+    public function comments()
     {
-        return $this->hasMany(Commento::class);
+        return $this->hasMany(Comment::class);
     }
 // traversal mode è la relazione con i modelli che prestabiliscono l'intrconnessione alla relazione concreta,
 // fomrmulata da una collection maggior parte dei casi, 

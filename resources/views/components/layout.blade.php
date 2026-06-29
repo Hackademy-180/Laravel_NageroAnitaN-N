@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DB _ Relazioneale</title>
+    <title>Entità </title>
     <!-- lnk bts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
@@ -35,6 +35,9 @@
             background-color: green;
             color: whitesmoke;
         }
+
+
+
     </style>
 </head>
 
@@ -45,7 +48,8 @@
 
 
 
-    <div class="container mt-4">
+    <div class="container">
+<h1 class="text-white text-center fw-bold">Entità - Relazioni nel DB possibili & App;</h1>
 
         {{$slot}}
     </div>
